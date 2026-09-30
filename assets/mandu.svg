@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520">
+<defs>
+  <radialGradient id="skin" cx="34%" cy="24%" r="76%"><stop offset="0" stop-color="#fffdf1"/><stop offset=".52" stop-color="#ffe3b5"/><stop offset="1" stop-color="#e9ab66"/></radialGradient>
+  <linearGradient id="skinShade" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff4d8"/><stop offset="1" stop-color="#efb56c"/></linearGradient>
+  <linearGradient id="robe" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#82c75b"/><stop offset=".55" stop-color="#4b913f"/><stop offset="1" stop-color="#275c31"/></linearGradient>
+  <linearGradient id="leather" x1="0" x2="1"><stop stop-color="#a86031"/><stop offset="1" stop-color="#61351f"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe18a"/><stop offset=".45" stop-color="#e5a43d"/><stop offset="1" stop-color="#9b5a20"/></linearGradient>
+  <radialGradient id="eye" cx="38%" cy="30%"><stop stop-color="#7a3d21"/><stop offset=".6" stop-color="#3b1e18"/><stop offset="1" stop-color="#160d0b"/></radialGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#000" flood-opacity=".35"/></filter>
+  <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<ellipse cx="260" cy="446" rx="145" ry="30" fill="#000" opacity=".18" filter="url(#glow)"/>
+<g filter="url(#shadow)">
+  <!-- leafy backpack / cape -->
+  <g stroke="#28572c" stroke-width="5" stroke-linejoin="round">
+    <path d="M121 245c-58-22-73-67-45-93 23-21 58-10 78 22 1-42 30-66 58-52 25 12 27 50 7 78-19 27-56 50-98 45z" fill="#4f9d43"/>
+    <path d="M399 248c57-23 70-68 43-94-23-21-58-9-78 22-1-40-29-65-57-51-26 13-29 49-9 78 20 28 58 50 101 45z" fill="#4c963e"/>
+    <path d="M109 222c-40-2-68 18-69 43 39-1 63 12 80 42 17-31 11-68-11-85z" fill="#65ae4a"/>
+    <path d="M411 220c42 0 69 20 70 45-38 0-62 13-80 42-16-30-11-68 10-87z" fill="#65ae4a"/>
+  </g>
+  <!-- dumpling crown folds -->
+  <path d="M128 261c-38-31-31-83 7-105 20-12 44-8 61 7-5-33 14-72 50-80 36-8 65 14 78 45 21-24 59-28 82-6 29 26 28 70 5 98 30 19 45 53 33 84-12 34-46 54-80 50-13 46-55 80-107 83-57 4-105-22-123-65-33 6-67-10-78-39-11-29 3-59 34-72 11-4 24-5 38 0z" fill="url(#skin)" stroke="#b86f3c" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M174 166c3-48 30-78 62-77 27 1 44 22 48 50 14-29 42-47 69-38 27 9 36 35 29 59-10-6-21-8-31-6-25 5-45 27-50 58-29-24-80-38-126-24-13 4-25 10-36 17 6-15 17-27 35-39z" fill="url(#skinShade)" opacity=".92"/>
+  <path d="M183 153c11-34 31-50 54-55M239 150c8-37 30-55 53-55M296 162c9-31 30-47 54-44" fill="none" stroke="#fff8dc" stroke-width="15" stroke-linecap="round" opacity=".75"/>
+  <!-- face -->
+  <ellipse cx="196" cy="274" rx="31" ry="39" fill="url(#eye)"/>
+  <ellipse cx="326" cy="274" rx="31" ry="39" fill="url(#eye)"/>
+  <ellipse cx="184" cy="261" rx="10" ry="13" fill="#fff"/>
+  <ellipse cx="314" cy="261" rx="10" ry="13" fill="#fff"/>
+  <ellipse cx="211" cy="292" rx="5" ry="7" fill="#bd7044" opacity=".65"/>
+  <ellipse cx="341" cy="292" rx="5" ry="7" fill="#bd7044" opacity=".65"/>
+  <ellipse cx="150" cy="318" rx="31" ry="16" fill="#f28b86" opacity=".42"/>
+  <ellipse cx="371" cy="318" rx="31" ry="16" fill="#f28b86" opacity=".42"/>
+  <path d="M226 318c18 29 53 29 72 0-10 7-22 11-36 11s-26-4-36-11z" fill="#dd625b" stroke="#6f3028" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M190 225q10-10 21 0M312 225q10-10 21 0" fill="none" stroke="#9c5a33" stroke-width="6" stroke-linecap="round"/>
+  <!-- arms and legs -->
+  <path d="M133 333c-31 9-47 39-30 61 17 23 53 19 66-6 13-24-4-63-36-55z" fill="url(#skin)" stroke="#b86f3c" stroke-width="7"/>
+  <path d="M388 331c32 9 48 39 31 61-17 23-52 18-66-6-14-24 3-64 35-55z" fill="url(#skin)" stroke="#b86f3c" stroke-width="7"/>
+  <path d="M193 410c-18 1-31 15-31 32 0 22 26 34 45 23 19-11 18-46-14-55z" fill="url(#skin)" stroke="#b86f3c" stroke-width="7"/>
+  <path d="M327 410c19 1 32 15 32 32 0 22-27 34-45 23-19-12-18-46 13-55z" fill="url(#skin)" stroke="#b86f3c" stroke-width="7"/>
+  <!-- robe -->
+  <path d="M139 340c32 17 72 25 122 25 48 0 89-8 121-25l19 57c-44 30-91 43-142 43-52 0-99-13-141-43z" fill="url(#robe)" stroke="#28572d" stroke-width="7"/>
+  <path d="M159 351l62 68M364 350l-65 69" fill="none" stroke="#fff5d9" stroke-width="15" opacity=".9"/>
+  <!-- belt -->
+  <path d="M132 369c75 25 177 27 258 0" fill="none" stroke="url(#leather)" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="261" cy="383" r="31" fill="url(#gold)" stroke="#6d3e1e" stroke-width="7"/>
+  <circle cx="261" cy="383" r="19" fill="#ffe8a7"/>
+  <path d="M251 387q10 10 20 0" fill="none" stroke="#754221" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="253" cy="376" r="2.5" fill="#5a321e"/><circle cx="269" cy="376" r="2.5" fill="#5a321e"/>
+  <!-- pouch -->
+  <path d="M333 372q27-4 41 9l-7 52q-24 13-49-1l2-47q2-9 13-13z" fill="#a85f31" stroke="#60351f" stroke-width="6"/>
+  <path d="M326 387h43" stroke="#d98945" stroke-width="5"/>
+  <!-- spoon weapon -->
+  <g transform="rotate(-25 116 258)">
+    <rect x="99" y="181" width="31" height="184" rx="15" fill="url(#leather)" stroke="#61351f" stroke-width="7"/>
+    <ellipse cx="115" cy="163" rx="54" ry="66" fill="url(#gold)" stroke="#6b3b1e" stroke-width="9"/>
+    <ellipse cx="115" cy="163" rx="34" ry="44" fill="#8d4b25" stroke="#5d321d" stroke-width="5"/>
+    <path d="M102 218h27M102 241h27" stroke="#e9a04b" stroke-width="5"/>
+  </g>
+  <!-- highlights -->
+  <path d="M132 249c-11 20-13 43-5 61" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+  <path d="M391 248c10 20 12 43 4 61" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".3"/>
+</g>
+</svg>
