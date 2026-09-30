@@ -44,6 +44,17 @@ linear-gradient(180deg,#34482b,#202c1d);border:1px solid #6f5a3f;overflow:hidden
 .enhance-arrow{font-size:20px;color:#ffd36f;font-weight:1000}
 .tabs{grid-template-columns:repeat(7,1fr)!important}
 @media(max-width:620px){.tab{font-size:9px!important;padding:6px 0!important}.tab span{font-size:18px}}
+.dropbox{margin-top:10px;padding:9px;border-radius:12px;background:#17130f88;border:1px solid #ffffff18}
+.drop-title{font-size:11px;font-weight:900;color:#ffd98a;margin-bottom:6px}
+.drop-row{display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-top:1px solid #ffffff12}
+.drop-row:first-of-type{border-top:0}
+.drop-floor{flex:0 0 46px;font-size:10px;color:#cbb8a6;font-weight:900;padding-top:3px}
+.drop-chips{display:flex;gap:5px;flex-wrap:wrap}
+.drop-chip{display:inline-flex;align-items:center;gap:3px;padding:3px 6px;border-radius:999px;background:#33271e;border:1px solid #614832;font-size:10px;color:#fff1dd}
+.drop-chip.rare{border-color:#8465a8;background:#382b49;color:#ead8ff}
+.boss-note{margin-top:6px;color:#ffc66b;font-size:10px;font-weight:800}
+.current-drop{margin:10px 0;padding:10px;border-radius:13px;background:linear-gradient(180deg,#382919,#241b13);border:1px solid #7b5937}
+.current-drop b{color:#ffd36f}
 </style>
 </head>
 <body>
@@ -51,7 +62,26 @@ linear-gradient(180deg,#34482b,#202c1d);border:1px solid #6f5a3f;overflow:hidden
   <div class="row space"><h2>맛의 대륙 <span class="badge">v0.2</span></h2><div>🪙 <b id="gold"></b>　⏳ <b id="time"></b>　🔬 <b id="rp"></b></div></div>
   <section id="home" class="view active"><div class="card hero"><div class="mandu" id="mandu"><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div><div><h3 id="name">기본만두</h3><div class="small" id="role">자유 레시피</div><div class="row space"><span>Lv.<b id="lv"></b></span><span id="expText"></span></div><div class="bar"><div class="fill" id="expBar"></div></div><div id="statText" style="margin-top:8px"></div></div></div><div class="card"><div class="row space"><h3>현재 레시피</h3><span>용량 <b id="used"></b>/<b id="max"></b></span></div><div class="slots" id="equip"></div><div class="small" style="margin-top:8px">재료를 빼면 소멸하는 프로토 규칙.</div></div><div class="card"><div class="row space"><h3>보유 식재료</h3><button onclick="starter()">테스트 보급</button></div><div class="grid" id="inv"></div></div></section>
   <section id="story" class="view"><div class="card"><h3>일반 스테이지</h3><div class="small">첫 클리어 EXP 큼 · 반복 EXP 1/10 · 기본 재료 지속 드랍</div><div id="storyBtns" class="row" style="margin-top:10px"></div></div><div class="card"><div class="row space"><b id="storyName"></b><button class="primary" onclick="fightStory()">자동전투</button></div><div class="battle-stage"><div class="manduArt" id="storyMandu"></div><div class="vs">VS</div><div class="enemyArt" id="storyEnemy">🐭</div></div><div class="log" id="storyLog"></div></div></section>
-  <section id="dungeon" class="view"><div class="zone"><div class="card"><h3>⛰️ 산 던전</h3><div class="small">약초·버섯·씨앗·꿀·산양유</div><p>최고 <b id="mb"></b>F</p><button onclick="chooseDungeon('m')">도전</button></div><div class="card"><h3>🌊 바다 던전</h3><div class="small">새우·조개·미역·오징어·장어</div><p>최고 <b id="sb"></b>F</p><button onclick="chooseDungeon('s')">도전</button></div></div><div class="card"><div class="row space"><b id="dTitle">던전을 선택해줘</b><button class="primary" id="dFight" onclick="fightDungeon()" disabled>자동전투</button></div><div class="battle-stage"><div class="manduArt" id="dungeonMandu"></div><div class="vs">VS</div><div class="enemyArt" id="dungeonEnemy">❔</div></div><div class="log" id="dLog"></div></div></section>
+  <section id="dungeon" class="view">
+    <div class="zone">
+      <div class="card">
+        <div class="row space"><div><h3>⛰️ 산 던전</h3><div class="small">회복 · 상태이상 · 방어 계열 재료</div></div><span class="badge">최고 <b id="mb"></b>F</span></div>
+        <div class="dropbox"><div class="drop-title">📦 층별 드랍</div><div id="mountainDrops"></div><div class="boss-note">👑 10 / 20 / 30F 보스: 재료 2개 + ⏳3 + 🔬1</div></div>
+        <button style="margin-top:9px;width:100%" onclick="chooseDungeon('m')">산 던전 선택</button>
+      </div>
+      <div class="card">
+        <div class="row space"><div><h3>🌊 바다 던전</h3><div class="small">스킬증폭 · 다단히트 계열 재료</div></div><span class="badge">최고 <b id="sb"></b>F</span></div>
+        <div class="dropbox"><div class="drop-title">📦 층별 드랍</div><div id="seaDrops"></div><div class="boss-note">👑 10 / 20 / 30F 보스: 재료 2개 + ⏳3 + 🔬1</div></div>
+        <button style="margin-top:9px;width:100%" onclick="chooseDungeon('s')">바다 던전 선택</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row space"><b id="dTitle">던전을 선택해줘</b><button class="primary" id="dFight" onclick="fightDungeon()" disabled>자동전투</button></div>
+      <div class="current-drop" id="currentDropInfo">던전을 선택하면 다음 층 드랍 정보를 보여줄게.</div>
+      <div class="battle-stage"><div class="manduArt" id="dungeonMandu"></div><div class="vs">VS</div><div class="enemyArt" id="dungeonEnemy">❔</div></div>
+      <div class="log" id="dLog"></div>
+    </div>
+  </section>
   <section id="kitchen" class="view"><div class="card"><h3>🌬️ 건조대</h3><div id="dry"></div></div><div class="card"><h3>🧊 숙성고</h3><div id="age"></div></div><div class="card"><h3>🍳 조리대</h3><div id="cook"></div></div><div class="small">실제 시간이 흐르고 ⏳ 세월의 조각으로 시간을 줄일 수 있음.</div></section>
   <section id="enhance" class="view">
     <div class="card"><div class="row space"><div><h3>🔥 재료 강화</h3><div class="small">같은 재료와 골드를 써서 +5까지 강화 · 프로토는 실패 없음</div></div><span class="badge">MAX +5</span></div></div>
@@ -122,12 +152,39 @@ function updateBattleArt(){
 
 function fightStory(){animateMandu('attack');const st=story[S.storySel],el=document.getElementById("storyLog"),win=sim(st,el);if(win){const first=S.storySel>=S.storyBest,ex=first?st.exp:Math.max(1,Math.floor(st.exp/10));gainExp(ex);S.gold+=first?80:15;const id=st.d[Math.floor(Math.random()*st.d.length)];add(id);if(first&&S.storyBest<story.length-1)S.storyBest++;if(first){S.time+=2;S.rp+=1}el.innerHTML+=`<br><b>승리! EXP +${ex} · ${I[id].n} 획득</b>`}else {animateMandu("hit");el.innerHTML+="<br><b>패배</b>"};if(win)animateMandu("win");render()}
 function chooseDungeon(t){S.dType=t;render()}function pool(t,f){if(t==="m"){if(f>=21)return["ginseng","goat","honey"];if(f>=11)return["mushroom","honey","goat"];return["seed","mugwort","mushroom"]}else{if(f>=21)return["octopus","tuna","salmon"];if(f>=11)return["squid","eel","salmon"];return["shrimp","clam","seaweed"]}}
+const DUNGEON_DROP_BANDS={
+  m:[
+    {floor:"1~10F",ids:["seed","mugwort","mushroom"]},
+    {floor:"11~20F",ids:["mushroom","honey","goat"]},
+    {floor:"21~30F",ids:["ginseng","goat","honey"]}
+  ],
+  s:[
+    {floor:"1~10F",ids:["shrimp","clam","seaweed"]},
+    {floor:"11~20F",ids:["squid","eel","salmon"]},
+    {floor:"21~30F",ids:["octopus","tuna","salmon"]}
+  ]
+};
+function dropChip(id){
+  const rare=I[id]&&["희귀","영웅","전설","환상","신화"].includes(I[id].g);
+  return `<span class="drop-chip ${rare?"rare":""}">${icon(id)} ${I[id].n}<small>·${I[id].g}</small></span>`;
+}
+function dropBandHTML(t){
+  return DUNGEON_DROP_BANDS[t].map(b=>`<div class="drop-row"><span class="drop-floor">${b.floor}</span><div class="drop-chips">${b.ids.map(dropChip).join("")}</div></div>`).join("");
+}
+function renderDungeonDrops(){
+  const m=document.getElementById("mountainDrops"),s=document.getElementById("seaDrops"),cur=document.getElementById("currentDropInfo");
+  if(m)m.innerHTML=dropBandHTML("m"); if(s)s.innerHTML=dropBandHTML("s");
+  if(!cur)return;
+  if(!S.dType){cur.innerHTML="던전을 선택하면 <b>다음 층</b>에서 나오는 재료를 바로 보여줄게.";return}
+  const best=S.dType==="m"?S.mb:S.sb,f=Math.min(30,best+1),ids=pool(S.dType,f),boss=f%10===0;
+  cur.innerHTML=`<div class="row space"><span><b>${S.dType==="m"?"⛰️ 산":"🌊 바다"} ${f}F 예상 드랍</b></span><span class="badge">${boss?"👑 BOSS":"일반층"}</span></div><div class="drop-chips" style="margin-top:7px">${ids.map(dropChip).join("")}</div>${boss?'<div class="boss-note">보스 클리어 시 뽑힌 재료 x2 + ⏳3 + 🔬1</div>':""}`;
+}
 function fightDungeon(){animateMandu('attack');const best=S.dType==="m"?S.mb:S.sb,f=Math.min(30,best+1),boss=f%10===0,el=document.getElementById("dLog");const win=sim({hp:90+f*18+(boss?150:0),atk:6+f*.8+(boss?5:0)},el);if(win){const p=pool(S.dType,f),id=p[Math.floor(Math.random()*p.length)];add(id,boss?2:1);S.gold+=20+f*2;if(boss){S.time+=3;S.rp++}if(S.dType==="m")S.mb=Math.max(S.mb,f);else S.sb=Math.max(S.sb,f);el.innerHTML+=`<br><b>클리어! ${I[id].n} 획득</b>`}else {animateMandu("hit");el.innerHTML+="<br><b>패배</b>"};if(win)animateMandu("win");render()}
 const rec={dry:[{n:"미역 말리기",need:{seaweed:1},out:"drySeaweed",sec:45},{n:"버섯 말리기",need:{mushroom:1},out:"dryMushroom",sec:60}],cook:[{n:"김치 담그기",need:{cabbage:1,chili:1,garlic:1,salt:1},out:"kimchi",sec:40}],age:[{n:"김치 숙성 → 묵은지",need:{kimchi:1},out:"agedKimchi",sec:120}]};
 function startJob(type,i){const r=rec[type][i];for(const [id,n] of Object.entries(r.need))if((S.inv[id]||0)<n)return alert(I[id].n+" 부족");for(const [id,n] of Object.entries(r.need))S.inv[id]-=n;const cut=type==="dry"?S.up.dry*.05:type==="age"?S.up.age*.05:0;S.jobs[type]={n:r.n,out:r.out,end:Date.now()+r.sec*1000*(1-cut)};render()}function speed(type){if(S.time<10)return alert("세월의 조각 부족");if(!S.jobs[type])return;S.time-=10;S.jobs[type].end-=10000;render()}
 function renderJobs(type){const el=document.getElementById(type),j=S.jobs[type];if(j){const rem=Math.max(0,Math.ceil((j.end-Date.now())/1000));if(rem<=0){add(j.out);S.jobs[type]=null;save();return renderJobs(type)}el.innerHTML=`<div class="item"><b>${j.n}</b><div>${rem}초 남음</div><button onclick="speed('${type}')">⏳10 사용</button></div>`}else{el.innerHTML=rec[type].map((r,i)=>`<div class="item"><b>${r.n}</b><div class="small">${Object.entries(r.need).map(([id,n])=>I[id].n+" x"+n).join(" + ")} · ${r.sec}초</div><button onclick="startJob('${type}',${i})">시작</button></div>`).join("")}}
 function upgrade(k){const cost=1+S.up[k];if(S.rp<cost)return alert("연구재화 부족");S.rp-=cost;S.up[k]++;render()}
-function render(){document.getElementById("gold").textContent=S.gold;document.getElementById("time").textContent=S.time;document.getElementById("rp").textContent=S.rp;document.getElementById("lv").textContent=S.lv;document.getElementById("expText").textContent=S.exp+"/"+needExp();document.getElementById("expBar").style.width=(S.exp/needExp()*100)+"%";document.getElementById("used").textContent=used();document.getElementById("max").textContent=maxCap();document.getElementById("role").textContent=role();document.getElementById("mandu").style.setProperty("--c",mix());const st=stats();document.getElementById("statText").textContent=`맛 ${st.atk.toFixed(1)} · HP ${Math.round(st.hp)} · 치확 ${Math.round(st.crit*100)}% · 스증 ${Math.round(st.sa*100)}%`;document.getElementById("name").textContent=S.equipped.length?I[S.equipped[0]].n+"향 만두":"기본만두";document.getElementById("equip").innerHTML=S.equipped.map((id,i)=>`<button class="slot" onclick="unequip(${i})">${icon(id)}</button>`).join("")+`<div class="slot">+</div>`;document.getElementById("inv").innerHTML=Object.keys(I).filter(id=>(S.inv[id]||0)>0).map(id=>`<div class="item"><b>${icon(id)} ${I[id].n} ${enhLv(id)?`<span class="enhance-level">+${enhLv(id)}</span>`:""}</b><span style="float:right">x${S.inv[id]}</span><div class="small">${I[id].g} · 용량 ${I[id].c}<br>${I[id].o}</div><button ${used()+I[id].c>maxCap()?"disabled":""} onclick="equip('${id}')">넣기</button></div>`).join("");document.getElementById("storyBtns").innerHTML=story.map((x,i)=>`<button ${i>S.storyBest?"disabled":""} onclick="S.storySel=${i};render()">${x.n.split(" ")[0]}</button>`).join("");document.getElementById("storyName").textContent=story[S.storySel].n;document.getElementById("mb").textContent=S.mb;document.getElementById("sb").textContent=S.sb;document.getElementById("dFight").disabled=!S.dType;document.getElementById("dTitle").textContent=!S.dType?"던전을 선택해줘":(S.dType==="m"?"⛰️ 산 던전 ":"🌊 바다 던전 ")+((S.dType==="m"?S.mb:S.sb)+1)+"F";renderJobs("dry");renderJobs("age");renderJobs("cook");document.getElementById("researchList").innerHTML=[["dry","건조 연구","건조시간 5% 감소/레벨"],["age","숙성 연구","숙성시간 5% 감소/레벨"],["combat","기초 미각 연구","맛·체력 2% 증가/레벨"]].map(([k,n,d])=>`<div class="item"><b>${n} Lv.${S.up[k]}</b><div class="small">${d}</div><button onclick="upgrade('${k}')">연구 ${1+S.up[k]} 사용</button></div>`).join("");document.getElementById("dexGrid").innerHTML=Object.keys(I).map(id=>`<div class="item" style="${S.dex.includes(id)?"":"opacity:.4;filter:grayscale(1)"}"><div style="font-size:25px">${S.dex.includes(id)?icon(id):"❓"}</div><b>${S.dex.includes(id)?I[id].n:"미발견"}</b><div class="small">${S.dex.includes(id)?I[id].o:"???"}</div></div>`).join("");document.getElementById("dexCount").textContent=S.dex.length+"/"+Object.keys(I).length;renderEnhance();updateBattleArt();save()}
+function render(){document.getElementById("gold").textContent=S.gold;document.getElementById("time").textContent=S.time;document.getElementById("rp").textContent=S.rp;document.getElementById("lv").textContent=S.lv;document.getElementById("expText").textContent=S.exp+"/"+needExp();document.getElementById("expBar").style.width=(S.exp/needExp()*100)+"%";document.getElementById("used").textContent=used();document.getElementById("max").textContent=maxCap();document.getElementById("role").textContent=role();document.getElementById("mandu").style.setProperty("--c",mix());const st=stats();document.getElementById("statText").textContent=`맛 ${st.atk.toFixed(1)} · HP ${Math.round(st.hp)} · 치확 ${Math.round(st.crit*100)}% · 스증 ${Math.round(st.sa*100)}%`;document.getElementById("name").textContent=S.equipped.length?I[S.equipped[0]].n+"향 만두":"기본만두";document.getElementById("equip").innerHTML=S.equipped.map((id,i)=>`<button class="slot" onclick="unequip(${i})">${icon(id)}</button>`).join("")+`<div class="slot">+</div>`;document.getElementById("inv").innerHTML=Object.keys(I).filter(id=>(S.inv[id]||0)>0).map(id=>`<div class="item"><b>${icon(id)} ${I[id].n} ${enhLv(id)?`<span class="enhance-level">+${enhLv(id)}</span>`:""}</b><span style="float:right">x${S.inv[id]}</span><div class="small">${I[id].g} · 용량 ${I[id].c}<br>${I[id].o}</div><button ${used()+I[id].c>maxCap()?"disabled":""} onclick="equip('${id}')">넣기</button></div>`).join("");document.getElementById("storyBtns").innerHTML=story.map((x,i)=>`<button ${i>S.storyBest?"disabled":""} onclick="S.storySel=${i};render()">${x.n.split(" ")[0]}</button>`).join("");document.getElementById("storyName").textContent=story[S.storySel].n;document.getElementById("mb").textContent=S.mb;document.getElementById("sb").textContent=S.sb;document.getElementById("dFight").disabled=!S.dType;document.getElementById("dTitle").textContent=!S.dType?"던전을 선택해줘":(S.dType==="m"?"⛰️ 산 던전 ":"🌊 바다 던전 ")+((S.dType==="m"?S.mb:S.sb)+1)+"F";renderDungeonDrops();renderJobs("dry");renderJobs("age");renderJobs("cook");document.getElementById("researchList").innerHTML=[["dry","건조 연구","건조시간 5% 감소/레벨"],["age","숙성 연구","숙성시간 5% 감소/레벨"],["combat","기초 미각 연구","맛·체력 2% 증가/레벨"]].map(([k,n,d])=>`<div class="item"><b>${n} Lv.${S.up[k]}</b><div class="small">${d}</div><button onclick="upgrade('${k}')">연구 ${1+S.up[k]} 사용</button></div>`).join("");document.getElementById("dexGrid").innerHTML=Object.keys(I).map(id=>`<div class="item" style="${S.dex.includes(id)?"":"opacity:.4;filter:grayscale(1)"}"><div style="font-size:25px">${S.dex.includes(id)?icon(id):"❓"}</div><b>${S.dex.includes(id)?I[id].n:"미발견"}</b><div class="small">${S.dex.includes(id)?I[id].o:"???"}</div></div>`).join("");document.getElementById("dexCount").textContent=S.dex.length+"/"+Object.keys(I).length;renderEnhance();updateBattleArt();save()}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.v).classList.add("active");render()});setInterval(()=>{if(document.getElementById("kitchen").classList.contains("active")){renderJobs("dry");renderJobs("age");renderJobs("cook")}},1000);render();
 </script>
 </body>
